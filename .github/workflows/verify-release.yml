@@ -1,0 +1,21 @@
+name: Verify Release Bundle
+on:
+  release:
+    types: [published]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Install deps
+        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Download assets with gh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${{ github.event.release.tag_name }}"
+          mkdir -p work && cd work
+          gh release download "$tag"
+          sha256sum -c p39_release_checksums.txt
+          tar -tzf p39_release_*.tgz | egrep 'manifest_(equity_fixed100k|proxy)\.json|scoreboard_(equity_fixed100k|proxy)\.csv|risk_limits\.json|_test_trades\.csv|_trials_metrics\.csv' >/dev/null
