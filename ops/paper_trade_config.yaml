@@ -1,0 +1,7 @@
+equity0: 100000
+use_winner_equity_dir: runs/$(cat runs/winner_dir_equity_fixed.txt)
+use_winner_proxy_dir:  runs/$(cat runs/winner_dir_proxy.txt)
+risk_limits_path: release_bundle/risk_limits.json
+throttle:
+  size_cut_pct: 50
+  pause_seconds: 600
