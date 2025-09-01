@@ -1,0 +1,7 @@
+runs/
+*.zip
+*.db
+btcusd_*.csv
+Bitcoin_*.csv
+JS_5m.csv
+10k.csv
