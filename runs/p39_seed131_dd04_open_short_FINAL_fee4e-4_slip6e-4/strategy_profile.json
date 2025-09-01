@@ -1,0 +1,282 @@
+{
+  "created_at": "2025-08-28T23:24:44.788305+00:00",
+  "objective": "multi",
+  "selection": {
+    "dd_cap_pct": 0.06,
+    "best_trial": 868,
+    "top_k": 1,
+    "top_trials": [
+      868
+    ]
+  },
+  "train_bars": 969386,
+  "test_bars": 646158,
+  "train_metrics": {
+    "pnl": 2876899.217906365,
+    "return_pct": 143.84496089531837,
+    "trades": 1053,
+    "win_rate": 0.5650522317188984,
+    "avg_trade": 2732.098022703101,
+    "avg_trade_pct": 0.004810586315613248,
+    "max_drawdown": -65735.45808573114,
+    "max_drawdown_pct": -0.04936200975958233,
+    "final_equity": 2896899.217906367,
+    "wins": 595,
+    "losses": 458
+  },
+  "test_metrics": {
+    "pnl": 321753.76426439814,
+    "return_pct": 16.08768821321991,
+    "trades": 317,
+    "win_rate": 0.6088328075709779,
+    "avg_trade": 1014.9961017804358,
+    "avg_trade_pct": 0.009194029982646939,
+    "max_drawdown": -11640.379789639614,
+    "max_drawdown_pct": -0.04250500793008866,
+    "final_equity": 341753.7642643982,
+    "wins": 193,
+    "losses": 124
+  },
+  "params": {
+    "p_sma": 16,
+    "p_std": 41,
+    "p_atr": 20,
+    "p_adx": 30,
+    "rsi_period": 70,
+    "ema1": 17,
+    "ema2": 18,
+    "slip_atr_k": 0.012612967627417006,
+    "slip_spread_k": 0.7501163305649443,
+    "spread_hl_frac": 0.0015957995554259875,
+    "bb_std_mult": 0.9973782559559874,
+    "rsi_os": 38,
+    "rsi_ob": 86,
+    "vol_spike": 0.10527903374075565,
+    "adx_thresh": 17.335249746938846,
+    "atr_min_pct": 0.004569102490871616,
+    "atr_max_pct": 0.054854809196974226,
+    "tp_mult": 2.035198227440295,
+    "tsl_mult": 0.0008517229131289389,
+    "strategy": "breakout",
+    "time_stop": 141,
+    "use_sma": true,
+    "use_atr": true,
+    "use_adx": true,
+    "use_ema": false,
+    "use_spike": false,
+    "rsi_required": false,
+    "edge_k": 0.13969238805958345,
+    "edge_cap": 0.9342843035237847,
+    "fee": 0.0004,
+    "rsi_key": "rsi70",
+    "start_equity": 20000.0,
+    "risk_per_trade": 0.02,
+    "risk_stop_atr_mult": 1.0,
+    "risk_min_stop_frac": 0.001,
+    "daily_loss_limit_pct": 0.03,
+    "cooldown_bars": 20,
+    "fill_timing": "next_open",
+    "bar_priority": "stop_first",
+    "session_start": 0,
+    "session_end": 24,
+    "include_hours_set": null,
+    "max_consec_losses": 0,
+    "lockout_bars": 0,
+    "proba_temp": 1.0,
+    "participation_cap": 1.0,
+    "price_step": 0.0001,
+    "qty_step": 0.0001,
+    "min_notional": 5.0,
+    "max_notional_pct_equity": 1.0,
+    "sides": "short",
+    "regime_adapt": false,
+    "regime_fast": 50,
+    "regime_slow": 200,
+    "regime_band": 0.006,
+    "round_exits": true,
+    "stop_extra_slip": 0.0,
+    "regime_overrides": {
+      "bull": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "mean_reversion",
+        "bb_std_mult": 2.0169431746748376,
+        "tp_mult": 1.9194251920826044,
+        "tsl_mult": 0.6891458682949287,
+        "time_stop_bars": 214,
+        "rsi_required": false,
+        "use_adx": true,
+        "adx": 18.0,
+        "use_atr": true,
+        "atr_range": [
+          0.0008,
+          0.06
+        ]
+      },
+      "sideways": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "breakout",
+        "bb_std_mult": 1.5828092896467827,
+        "tp_mult": 2.341879695778944,
+        "tsl_mult": 0.651967765830165,
+        "time_stop_bars": 235,
+        "rsi_required": true,
+        "use_adx": true,
+        "adx": 15.0,
+        "use_atr": true,
+        "atr_range": [
+          0.001,
+          0.14
+        ]
+      },
+      "bear": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "breakout",
+        "bb_std_mult": 1.2571599337995167,
+        "tp_mult": 1.7149673432024581,
+        "tsl_mult": 0.25,
+        "time_stop_bars": 122,
+        "rsi_required": true,
+        "use_adx": true,
+        "adx": 20.0,
+        "use_atr": true,
+        "atr_range": [
+          0.0015,
+          0.06
+        ]
+      }
+    },
+    "slippage": 0.0006,
+    "select_top_k": 1,
+    "aggregate_params": "median",
+    "objective": "multi",
+    "wfo_folds": 5,
+    "embargo_bars": 300,
+    "use_ml": false,
+    "ml_thresh": 0.0
+  },
+  "guardrails": {
+    "max_dd_pct_allowed": 0.06,
+    "min_trades_lookback": 75,
+    "daily_loss_limit_pct": 0.03,
+    "cooldown_bars": 20,
+    "fill_timing": "next_open",
+    "bar_priority": "stop_first",
+    "session_hours": [
+      0,
+      24
+    ],
+    "include_hours": [],
+    "consec_loss_lockout": [
+      0,
+      0
+    ],
+    "sides": "short"
+  },
+  "regime": {
+    "enabled": false,
+    "fast": 50,
+    "slow": 200,
+    "band": 0.006,
+    "overrides": {
+      "bull": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "mean_reversion",
+        "bb_std_mult": 2.0169431746748376,
+        "tp_mult": 1.9194251920826044,
+        "tsl_mult": 0.6891458682949287,
+        "time_stop_bars": 214,
+        "rsi_required": false,
+        "use_adx": true,
+        "adx": 18.0,
+        "use_atr": true,
+        "atr_range": [
+          0.0008,
+          0.06
+        ]
+      },
+      "sideways": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "breakout",
+        "bb_std_mult": 1.5828092896467827,
+        "tp_mult": 2.341879695778944,
+        "tsl_mult": 0.651967765830165,
+        "time_stop_bars": 235,
+        "rsi_required": true,
+        "use_adx": true,
+        "adx": 15.0,
+        "use_atr": true,
+        "atr_range": [
+          0.001,
+          0.14
+        ]
+      },
+      "bear": {
+        "allowed_sides": [
+          "long",
+          "short"
+        ],
+        "mode": "breakout",
+        "bb_std_mult": 1.2571599337995167,
+        "tp_mult": 1.7149673432024581,
+        "tsl_mult": 0.25,
+        "time_stop_bars": 122,
+        "rsi_required": true,
+        "use_adx": true,
+        "adx": 20.0,
+        "use_atr": true,
+        "atr_range": [
+          0.0015,
+          0.06
+        ]
+      }
+    }
+  },
+  "run_config": {
+    "trials": 1000,
+    "n_jobs": 1,
+    "seed": 1337,
+    "objective": "multi",
+    "multi_objective": true,
+    "train_frac": 0.6,
+    "wfo_folds": 5,
+    "embargo_bars": 300,
+    "select_top_k": 1,
+    "aggregate_params": "median",
+    "start_equity": 20000.0,
+    "fee": 0.0004,
+    "fixed_slippage": 0.0006,
+    "min_slippage": 0.0,
+    "fill_timing": "next_open",
+    "bar_priority": "stop_first",
+    "session_start": 0,
+    "session_end": 24,
+    "include_hours": null,
+    "sides": "short",
+    "regime_adapt": false,
+    "regime_fast": 50,
+    "regime_slow": 200,
+    "regime_band": 0.0,
+    "round_exits": true,
+    "stop_extra_slip": 0.0
+  },
+  "metrics_consistent": {
+    "return_pct_train_consistent": 143.84496089531825,
+    "return_pct_test_consistent": 16.087688213219906,
+    "suspicious_run": true
+  }
+}

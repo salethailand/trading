@@ -1,0 +1,323 @@
+{
+  "generated_utc": "20250901_184022",
+  "env": {
+    "python": "3.13.3",
+    "pandas": "2.3.1",
+    "numpy": "2.3.1",
+    "platform": "macOS-15.5-arm64-arm-64bit-Mach-O"
+  },
+  "args": {
+    "input": [
+      "runs/p39_*"
+    ],
+    "topk": 25,
+    "dd_weight": 20.0,
+    "strict": true,
+    "min_trades": 5,
+    "monthly_target": 0.1,
+    "min_months": 3,
+    "winner_file": "runs/winner_dir.txt",
+    "no_write": false,
+    "why": true,
+    "monthly_mode": "equity",
+    "equity0": null,
+    "dump_winner_monthlies": true,
+    "report": true,
+    "report_out": null
+  },
+  "inputs": [
+    "runs/p39_*"
+  ],
+  "counts": {
+    "run_dirs_found": 151,
+    "rows_scored": 23,
+    "with_trade_logs": 23
+  },
+  "winner": "p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+  "scoreboard_top": [
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+      "ret%": 18391.413642739804,
+      "maxDD%": -9.06155541255587,
+      "trades": 6071,
+      "geo_monthly%": 34.05695965965836,
+      "months": 14,
+      "mdd_from_trades%": 6.072195874477626,
+      "dd_used%": 9.06155541255587,
+      "score": 18210.182534488686
+    },
+    {
+      "dir": "p39_seed131_dd04_open_short_FINAL_fee4e-4_slip6e-4",
+      "ret%": 18117.44232795117,
+      "maxDD%": -18.720934894829032,
+      "trades": 2752,
+      "geo_monthly%": 32.303401280690224,
+      "months": 14,
+      "mdd_from_trades%": 7.668538906762723,
+      "dd_used%": 18.720934894829032,
+      "score": 17743.023630054588
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_trades",
+      "ret%": 6619.932170277026,
+      "maxDD%": -17.13418935630294,
+      "trades": 591,
+      "geo_monthly%": 27.867244266102947,
+      "months": 14,
+      "mdd_from_trades%": 13.059324589273958,
+      "dd_used%": 17.13418935630294,
+      "score": 6277.248383150967
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short_mc_fee2x_fix",
+      "ret%": 3526.8144170671717,
+      "maxDD%": -8.548123547988851,
+      "trades": 4807,
+      "geo_monthly%": 24.30652323141142,
+      "months": 14,
+      "mdd_from_trades%": 3.7097714713123175,
+      "dd_used%": 8.548123547988851,
+      "score": 3355.8519461073947
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_short_s73",
+      "ret%": 3959.592631359512,
+      "maxDD%": -38.326564071862975,
+      "trades": 1162,
+      "geo_monthly%": 62.097146035140106,
+      "months": 7,
+      "mdd_from_trades%": 10.549581953122534,
+      "dd_used%": 38.326564071862975,
+      "score": 3193.0613499222522
+    },
+    {
+      "dir": "p39_dd06_open_long_SPOT_fee5e-4_slip4e-4_s131",
+      "ret%": 1567.542812230956,
+      "maxDD%": -12.3829831847279,
+      "trades": 3395,
+      "geo_monthly%": 21.87698280893083,
+      "months": 14,
+      "mdd_from_trades%": 6.04687669110564,
+      "dd_used%": 12.3829831847279,
+      "score": 1319.883148536398
+    },
+    {
+      "dir": "p39_fee0.0005_slip0.0006_s43_wide_strict_open_longshort_reopt",
+      "ret%": 1092.781425191714,
+      "maxDD%": -18.70751773649183,
+      "trades": 2792,
+      "geo_monthly%": 19.379358803671547,
+      "months": 13,
+      "mdd_from_trades%": 3.5325403297665203,
+      "dd_used%": 18.70751773649183,
+      "score": 718.6310704618775
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 11.90577891497145,
+      "months": 5,
+      "mdd_from_trades%": 4.748933475382422,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_seed99_fee0004_slip0008",
+      "ret%": 54.498147232072384,
+      "maxDD%": -2.81299467606609,
+      "trades": 101,
+      "geo_monthly%": 12.967961023429423,
+      "months": 4,
+      "mdd_from_trades%": 21.362630361366563,
+      "dd_used%": 2.81299467606609,
+      "score": -1.761746289249416
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0006_slip0.0006_s43",
+      "ret%": 139.39652588014718,
+      "maxDD%": -8.03589540279795,
+      "trades": 8,
+      "geo_monthly%": 42.54277682179611,
+      "months": 3,
+      "mdd_from_trades%": 20.79267161492654,
+      "dd_used%": 8.03589540279795,
+      "score": -21.321382175811806
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_long",
+      "ret%": 268.50685156027424,
+      "maxDD%": -20.83481847440051,
+      "trades": 492,
+      "geo_monthly%": 14.586664567524474,
+      "months": 9,
+      "mdd_from_trades%": 2.8922201466476727,
+      "dd_used%": 20.83481847440051,
+      "score": -148.18951792773595
+    },
+    {
+      "dir": "p39_r03_dd0.06_s43",
+      "ret%": 148.586326302707,
+      "maxDD%": -16.5617027161655,
+      "trades": 40,
+      "geo_monthly%": 27.227720117272696,
+      "months": 7,
+      "mdd_from_trades%": 130.89152372862125,
+      "dd_used%": 16.5617027161655,
+      "score": -182.64772802060298
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short",
+      "ret%": 375.4755351788651,
+      "maxDD%": -33.60923050972161,
+      "trades": 593,
+      "geo_monthly%": 11.487931205193243,
+      "months": 13,
+      "mdd_from_trades%": 3.7463701999452925,
+      "dd_used%": 33.60923050972161,
+      "score": -296.7090750155672
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fix_seed303",
+      "ret%": 1528.7442674422837,
+      "maxDD%": -94.84736699859843,
+      "trades": 6258,
+      "geo_monthly%": 14.329529276282225,
+      "months": 14,
+      "mdd_from_trades%": 3.6769145209978205,
+      "dd_used%": 94.84736699859843,
+      "score": -368.20307252968496
+    },
+    {
+      "dir": "p39_r05_dd0.12_s43",
+      "ret%": 33.74768158715375,
+      "maxDD%": -22.33771202897939,
+      "trades": 148,
+      "geo_monthly%": 10.232705677990209,
+      "months": 3,
+      "mdd_from_trades%": 18.284274307877425,
+      "dd_used%": 22.33771202897939,
+      "score": -413.006558992434
+    }
+  ],
+  "artifacts": {
+    "scoreboard_csv": "reports/20250901_184022/scoreboard.csv",
+    "winner_monthlies_csv": "reports/20250901_184022/winner_monthlies.csv",
+    "winner_file": "runs/winner_dir.txt"
+  },
+  "winner_detail": {
+    "dir": "runs/p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+    "E0": 2478.6821201926846,
+    "E0_origin": "inferred",
+    "monthly_mode": "equity",
+    "months": 14,
+    "geo_monthly": 0.3405695965965836,
+    "cagr": 32.68777961138897,
+    "sharpe_ann": 1.1778854328429385,
+    "sortino_ann": NaN,
+    "maxdd_from_monthlies": 0.0,
+    "ulcer_index": 0.0,
+    "mdd_from_curve": 0.06072195874477626,
+    "files": {
+      "trials_metrics.csv": {
+        "exists": true,
+        "sha256": "12587722f92d23f55a507cb1785045c28894974b5d14ca9d7c87721f66f3f4a4",
+        "size": 879255
+      },
+      "test_trades.csv": {
+        "exists": true,
+        "sha256": "ca767bc048d0438b8d7e343bb179f412a738401002c75a4a100f602cd65557c4",
+        "size": 110696
+      }
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+    "version": 1,
+    "mode": "paper",
+    "timeframe": "1m",
+    "timezone": "UTC",
+    "equity_source": "exchange",
+    "fills": {
+      "mode": "stop_first"
+    },
+    "exchange": {
+      "name": "mexc",
+      "symbol": "BTC/USDT:USDT",
+      "fee": 0.0,
+      "fixed_slippage": 0.0006,
+      "qty_step": 1e-05,
+      "options": {
+        "defaultType": "swap",
+        "defaultMarginMode": "cross"
+      }
+    },
+    "account": {
+      "type": "swap",
+      "quote": "USDT",
+      "leverage": 3,
+      "position_mode": "oneway"
+    },
+    "trading": {
+      "side": "both",
+      "session_utc_hours": [
+        16,
+        20,
+        22
+      ],
+      "participation_cap": 0.05,
+      "max_notional": 60,
+      "min_notional": 5
+    },
+    "risk": {
+      "risk_per_trade": 0.003,
+      "daily_loss_limit_pct": 0.015,
+      "weekly_loss_limit_pct": 0.04,
+      "consecutive_loss_lockout": 6,
+      "cooldown_after_lockout_bars": 120
+    },
+    "regime": {
+      "enabled": true,
+      "fast": 50,
+      "slow": 200,
+      "band": 0.006,
+      "vol_gate_atr_pct": 0.0012,
+      "overrides": {
+        "bull": {
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "mode": "mean_reversion",
+          "bb_std_mult": 2.0169431746748376,
+          "tp_mult": 1.9194251920826044,
+          "tsl_mult": 0.6891458682949287,
+          "time_stop_bars": 214,
+          "rsi_required": false,
+          "use_adx": true,
+          "adx": 18.0,
+          "use_atr": true,
+          "atr_range": [
+            0.0008,
+            0.06
+          ]
+        },
+        "sideways": {
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "mode": "breakout",
+          "bb_std_mult": 1.5828092896467827,
+          "tp_mult": 2.341879695778944,
+          "tsl_mult": 0.651967765830165,
+          "time_stop_bars": 235,
+          "rsi_required": true,
+          "use_adx": true,
+          "adx": 15.0,
+          "use_atr": true,
+          "atr_range": [
+            0.001,
+            0.14
+          ]
+        },
+        "bear": {
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "mode": "breakout",
+          "bb_std_mult": 1.2571599337995167,
+          "tp_mult": 1.7149673432024581,
+          "tsl_mult": 0.25,
+          "time_stop_bars": 122,
+          "rsi_required": true,
+          "use_adx": true,
+          "adx": 20.0,
+          "use_atr": true,
+          "atr_range": [
+            0.0015,
+            0.06
+          ]
+        }
+      }
+    },
+    "strategy": {
+      "type": "ensemble",
+      "consensus": "majority",
+      "members": [
+        {
+          "id": "cap015",
+          "weight": 1.0,
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "type": "mean_reversion",
+          "bb_std_mult": 0.6615907542331074,
+          "tp_mult": 1.3877729314743852,
+          "tsl_mult": 0.745270671806832,
+          "time_stop_bars": 56,
+          "rsi_required": false,
+          "use_adx": false,
+          "use_atr": false
+        },
+        {
+          "id": "seed7_hardcv",
+          "weight": 1.0,
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "type": "breakout",
+          "bb_std_mult": 0.7219750062600463,
+          "tp_mult": 2.051638155641473,
+          "tsl_mult": 0.5387069314455479,
+          "time_stop_bars": 275,
+          "rsi_required": false,
+          "use_adx": true,
+          "use_atr": true
+        },
+        {
+          "id": "slip0020",
+          "weight": 1.0,
+          "allowed_sides": [
+            "long",
+            "short"
+          ],
+          "type": "breakout",
+          "bb_std_mult": 3.030529870541404,
+          "tp_mult": 1.5880917792106741,
+          "tsl_mult": 0.2106855432228407,
+          "time_stop_bars": 145,
+          "rsi_required": true,
+          "use_adx": true,
+          "use_atr": false
+        }
+      ]
+    },
+    "telemetry": {
+      "prometheus": {
+        "enabled": true,
+        "port": 9091
+      },
+      "flask_ui": {
+        "enabled": true,
+        "port": 8080
+      }
+    },
+    "telegram": {
+      "enabled": false,
+      "bot_token": "",
+      "chat_id": 0
+    }
+  }

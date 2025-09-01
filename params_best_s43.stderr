@@ -1,0 +1,15 @@
+/Users/moshenechushtan/projects/trading/wfo_1m_dynamic.py:1343: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  atr200 = compute_atr(df['high'], df['low'], df['close'], 200).fillna(method='bfill')
+2025-08-25 23:55:33,217 WARNING: DATA SANITY: Extreme jumps >20*ATR200: 42
+[I 2025-08-25 23:55:33,232] A new study created in memory with name: no-name-4ea73c06-7b17-4022-8902-4aa1910773b6
+[I 2025-08-25 23:55:40,500] Trial 0 finished with values: [-1000000000.0, 0.46716038264772286] and parameters: {'p_sma': 11, 'p_std': 39, 'p_atr': 10, 'p_adx': 12, 'rsi_period': 32, 'ema1': 27, 'ema2': 43, 'slip_atr_k': 0.13529055307085094, 'slip_spread_k': 0.0290138244243604, 'spread_hl_frac': 0.03668741481401415, 'bb_std_mult': 1.7243450571361183, 'rsi_os': 45, 'rsi_ob': 57, 'vol_spike': 0.01706548099534554, 'adx_thresh': 30.999459226976008, 'atr_min_pct': 0.006630869876531139, 'atr_max_pct': 0.06669852272661635, 'tp_mult': 1.6390319773262354, 'tsl_mult': 0.07666269999644726, 'strategy': 'mean_reversion', 'time_stop': 292, 'use_sma': False, 'use_atr': False, 'use_adx': False, 'use_ema': True, 'use_spike': True, 'rsi_required': False, 'edge_k': 1.9564082681640123, 'edge_cap': 0.9132296199395333}.
+Traceback (most recent call last):
+  File "/Users/moshenechushtan/projects/trading/wfo_1m_dynamic.py", line 1902, in <module>
+    main()
+    ~~~~^^
+  File "/Users/moshenechushtan/projects/trading/wfo_1m_dynamic.py", line 1693, in main
+    rets_tr = run_backtest(dtr, best, probs_tr, trade_log_tr); mtr = compute_metrics(rets_tr, start_equity=args.start_equity)
+  File "/Users/moshenechushtan/projects/trading/wfo_1m_dynamic.py", line 551, in run_backtest
+    upper = sma[i-1] + float(eff['bb_std_mult']) * std[i-1]
+                       ~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

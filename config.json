@@ -1,0 +1,102 @@
+{
+  "kucoin": {
+    "api_key": "6876b9a9c714e80001eea6c4",
+    "secret": "1ba68f57-03ea-4064-8164-b62577afc025",
+    "passphrase": "Mcjjpt18!"
+  },
+  "telegram": {
+    "token": "7016560702:AAEmOUfu6z-3LCVyUsmftYJekkHQIZeiOFw",
+    "chat_id": 981459625
+  },
+  "logging": {
+    "file": "bot.log"
+  },
+  "metrics": {
+    "port": 8000
+  },
+  "database": {
+    "path": "bot_state.db"
+  },
+  "dashboard": {
+    "port": 5000
+  },
+  "model": {
+    "paths_per_regime": {
+      "bull": "ml_bull_15f_1753317536.pkl",
+      "bear": "ml_bear_15f_1753317536.pkl",
+      "sideways": "ml_sideways_15f_1753317536.pkl"
+    },
+    "path": "ml_sideways_15f_1753317536.pkl",
+    "param_grid": {
+      "max_depth": [
+        3,
+        5,
+        7
+      ],
+      "n_estimators": [
+        50,
+        100,
+        200
+      ],
+      "learning_rate": [
+        0.01,
+        0.05,
+        0.1
+      ],
+      "subsample": [
+        0.7,
+        1.0
+      ],
+      "colsample_bytree": [
+        0.7,
+        1.0
+      ]
+    },
+    "alert_threshold": 0.0,
+    "retrain_interval": 86400
+  },
+  "strategy": {
+    "ml_weight": 0.3,
+    "rule_weight": 0.1,
+    "rsi_oversold": 60,
+    "rsi_overbought": 60,
+    "vol_spike_mult": 1.1,
+    "ml_threshold": 0.05,
+    "bb_std_mult": 1.1,
+    "kelly_frac": 0.7,
+    "ultra_bb_std": 0.0,
+    "imbalance_threshold": 0.1
+  },
+  "trading": {
+    "pairs": [
+      "BTC/USDT",
+      "ETH/USDT",
+      "SOL/USDT",
+      "BNB/USDT"
+    ],
+    "min_size": 0.001,
+    "threshold": {
+      "BTC/USDT": 0.6,
+      "ETH/USDT": 0.55,
+      "SOL/USDT": 0.5,
+      "BNB/USDT": 0.5
+    },
+    "risk_percent": 0.50,
+    "min_balance": 50,
+    "tp_mult": 1.03,
+    "trailing_stop_mult": 0.05,
+    "exit_slices": 0,
+    "only_trade_in": [
+      "bull"
+    ],
+    "trade_hours": [
+      "00:00-23:59"
+    ],
+    "loop_delay": 5
+  },
+  "risk": {
+    "max_drawdown_usdt": 50.0,
+    "max_loss_per_symbol": 50.0,
+    "error_threshold": 100
+  }
+}

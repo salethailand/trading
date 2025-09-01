@@ -1,0 +1,345 @@
+{
+  "generated_utc": "20250901_184030",
+  "env": {
+    "python": "3.13.3",
+    "pandas": "2.3.1",
+    "numpy": "2.3.1",
+    "platform": "macOS-15.5-arm64-arm-64bit-Mach-O"
+  },
+  "args": {
+    "input": [
+      "runs/p39_*"
+    ],
+    "topk": 25,
+    "dd_weight": 20.0,
+    "strict": true,
+    "min_trades": 5,
+    "monthly_target": 0.1,
+    "min_months": 3,
+    "winner_file": "runs/winner_dir.txt",
+    "no_write": false,
+    "why": true,
+    "monthly_mode": "proxy",
+    "equity0": null,
+    "dump_winner_monthlies": true,
+    "report": true,
+    "report_out": "reports/proxy_check"
+  },
+  "inputs": [
+    "runs/p39_*"
+  ],
+  "counts": {
+    "run_dirs_found": 151,
+    "rows_scored": 32,
+    "with_trade_logs": 32
+  },
+  "winner": "p39_seed131_fee0004_slip0008",
+  "scoreboard_top": [
+    {
+      "dir": "p39_seed131_fee0004_slip0008",
+      "ret%": 74.40542056628531,
+      "maxDD%": -1.5594024451014699,
+      "trades": 107,
+      "geo_monthly%": 10.503273803162326,
+      "months": 8,
+      "mdd_from_trades%": 3.297675583646953,
+      "dd_used%": 1.5594024451014699,
+      "score": 43.21737166425592
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl0_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl3_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock0_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock10_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd0.08_mcl5_lock20_s43",
+      "ret%": 99.62507857813829,
+      "maxDD%": -3.2199376879328203,
+      "trades": 21,
+      "geo_monthly%": 14.122663778786471,
+      "months": 6,
+      "mdd_from_trades%": 4.670999519840313,
+      "dd_used%": 3.2199376879328203,
+      "score": 35.226324819481874
+    },
+    {
+      "dir": "p39_r05_dd08_s99_wfo8",
+      "ret%": 0.81338642255346,
+      "maxDD%": -0.18491193417206,
+      "trades": 19,
+      "geo_monthly%": 17.656600604332727,
+      "months": 5,
+      "mdd_from_trades%": 0.6813965949128531,
+      "dd_used%": 0.18491193417206,
+      "score": -2.88485226088774
+    },
+    {
+      "dir": "p39_r05_dd08_s99_wfo5",
+      "ret%": 0.81338642255346,
+      "maxDD%": -0.18491193417206,
+      "trades": 19,
+      "geo_monthly%": 17.656600604332727,
+      "months": 5,
+      "mdd_from_trades%": 0.6813965949128531,
+      "dd_used%": 0.18491193417206,
+      "score": -2.88485226088774
+    },
+    {
+      "dir": "p39_r05_dd08_s99_wfo4",
+      "ret%": 0.81338642255346,
+      "maxDD%": -0.18491193417206,
+      "trades": 19,
+      "geo_monthly%": 17.656600604332727,
+      "months": 5,
+      "mdd_from_trades%": 0.6813965949128531,
+      "dd_used%": 0.18491193417206,
+      "score": -2.88485226088774
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0005_slip0.0012_s43",
+      "ret%": 0.39971334566215,
+      "maxDD%": -0.26816871941972,
+      "trades": 13,
+      "geo_monthly%": 19.063378155537396,
+      "months": 5,
+      "mdd_from_trades%": 12.348702884922048,
+      "dd_used%": 0.26816871941972,
+      "score": -4.96366104273225
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short_fee2xslip2x_dd06",
+      "ret%": 21.4281440508991,
+      "maxDD%": -1.8552433493304599,
+      "trades": 33,
+      "geo_monthly%": 16.410273245855024,
+      "months": 5,
+      "mdd_from_trades%": 6.510807769794502,
+      "dd_used%": 1.8552433493304599,
+      "score": -15.676722935710096
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0006_slip0.0006_s43",
+      "ret%": 139.39652588014718,
+      "maxDD%": -8.03589540279795,
+      "trades": 8,
+      "geo_monthly%": 18.484712529255837,
+      "months": 4,
+      "mdd_from_trades%": 12.16021403179559,
+      "dd_used%": 8.03589540279795,
+      "score": -21.321382175811806
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0005_slip0.0008_s43",
+      "ret%": 6.62675908725813,
+      "maxDD%": -2.10543305090861,
+      "trades": 18,
+      "geo_monthly%": 12.564636297428896,
+      "months": 6,
+      "mdd_from_trades%": 5.318197301185224,
+      "dd_used%": 2.10543305090861,
+      "score": -35.48190193091407
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0003_slip0.0012_s43",
+      "ret%": 4.25923631858058,
+      "maxDD%": -2.25996819210777,
+      "trades": 12,
+      "geo_monthly%": 20.76392184244132,
+      "months": 4,
+      "mdd_from_trades%": 8.558967625209423,
+      "dd_used%": 2.25996819210777,
+      "score": -40.940127523574816
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0005_slip0.0010_s43",
+      "ret%": 4.26007221972102,
+      "maxDD%": -2.26042252994159,
+      "trades": 12,
+      "geo_monthly%": 20.769655669948737,
+      "months": 4,
+      "mdd_from_trades%": 8.651001338263642,
+      "dd_used%": 2.26042252994159,
+      "score": -40.94837837911078
+    },
+    {
+      "dir": "p39_r05_dd08_fee0.0003_slip0.0008_s43",
+      "ret%": 110.23383733907957,
+      "maxDD%": 0.0,
+      "trades": 8,
+      "geo_monthly%": 18.97264568148192,
+      "months": 5,
+      "mdd_from_trades%": 8.175016205709241,
+      "dd_used%": 8.175016205709241,
+      "score": -53.26648677510525
+    },
+    {
+      "dir": "p39_r03_dd0.12_s43",
+      "ret%": 9.11093664138888,
+      "maxDD%": -7.0741685547447,
+      "trades": 5,
+      "geo_monthly%": 10.522153923782405,
+      "months": 4,
+      "mdd_from_trades%": 0.720372439087158,
+      "dd_used%": 7.0741685547447,
+      "score": -132.37243445350512
+    },
+    {
+      "dir": "p39_r03_dd0.10_s43",
+      "ret%": 9.11093664138888,
+      "maxDD%": -7.0741685547447,
+      "trades": 5,
+      "geo_monthly%": 10.522153923782405,
+      "months": 4,
+      "mdd_from_trades%": 0.720372439087158,
+      "dd_used%": 7.0741685547447,
+      "score": -132.37243445350512
+    },
+    {
+      "dir": "p39_r07_dd06_s21_wfo4",
+      "ret%": 21.26202729402051,
+      "maxDD%": -8.92548602976221,
+      "trades": 8,
+      "geo_monthly%": 23.883251966479822,
+      "months": 4,
+      "mdd_from_trades%": 4.641825022076573,
+      "dd_used%": 8.92548602976221,
+      "score": -157.2476933012237
+    },
+    {
+      "dir": "p39_r07_dd06_s21_wfo5",
+      "ret%": 21.26202729402051,
+      "maxDD%": -8.92548602976221,
+      "trades": 8,
+      "geo_monthly%": 23.883251966479822,
+      "months": 4,
+      "mdd_from_trades%": 4.641825022076573,
+      "dd_used%": 8.92548602976221,
+      "score": -157.2476933012237
+    },
+    {
+      "dir": "p39_r07_dd06_s21_wfo8",
+      "ret%": 21.26202729402051,
+      "maxDD%": -8.92548602976221,
+      "trades": 8,
+      "geo_monthly%": 23.883251966479822,
+      "months": 4,
+      "mdd_from_trades%": 4.641825022076573,
+      "dd_used%": 8.92548602976221,
+      "score": -157.2476933012237
+    }
+  ],
+  "artifacts": {
+    "scoreboard_csv": "reports/proxy_check/scoreboard.csv",
+    "winner_monthlies_csv": "reports/proxy_check/winner_monthlies.csv",
+    "winner_file": "runs/winner_dir.txt"
+  },
+  "winner_detail": {
+    "dir": "runs/p39_seed131_fee0004_slip0008",
+    "E0": null,
+    "E0_origin": null,
+    "monthly_mode": "proxy",
+    "months": 8,
+    "geo_monthly": 0.10503273803162326,
+    "cagr": 2.315138957328163,
+    "sharpe_ann": 2.1565268918925975,
+    "sortino_ann": 49.395905909715125,
+    "maxdd_from_monthlies": 0.018123755171733036,
+    "ulcer_index": 0.008195071584217905,
+    "mdd_from_curve": 0.03297675583646953,
+    "files": {
+      "trials_metrics.csv": {
+        "exists": true,
+        "sha256": "7f918cbc0897e9d8268aa47b1db92b1b65513404be344840894b3a6ccb29abb0",
+        "size": 1047214
+      },
+      "test_trades.csv": {
+        "exists": true,
+        "sha256": "240ef4dda050e569981f643c9104ebd8ae12b777a75c479062bc794aa75a256e",
+        "size": 6134
+      }
+    }
+  }
+}

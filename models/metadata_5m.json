@@ -1,0 +1,30 @@
+{
+  "data_file": "btcusd_5m_fixed.parquet",
+  "rows": 817622,
+  "index_start": "2017-11-01T05:35:00+00:00",
+  "index_end": "2025-08-11T00:00:00+00:00",
+  "features": {
+    "rsi_period": 14,
+    "p_sma": 50,
+    "p_std": 20,
+    "p_atr": 14,
+    "p_adx": 14,
+    "bb_mult": 2.0
+  },
+  "label": {
+    "horizon": 60,
+    "definition": "future return over horizon > 0"
+  },
+  "sampling": {
+    "sample_frac": 0.15,
+    "max_samples": 300000
+  },
+  "model": {
+    "framework": "xgboost",
+    "n_estimators": 400,
+    "max_depth": 4,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8
+  }
+}

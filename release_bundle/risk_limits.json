@@ -1,0 +1,18 @@
+{
+  "equity0": 100000.0,
+  "stats_loss_only": {
+    "p50_loss": -95.73,
+    "p10_loss": -501.71,
+    "p01_loss": -897.92,
+    "worst_loss": -1068.08,
+    "backtest_mdd_pct": 1.7
+  },
+  "limits": {
+    "max_daily_loss_soft": 627.13,
+    "max_daily_loss_hard": 1121.48,
+    "max_drawdown_kill_pct": 0.85,
+    "throttle_on_soft_stop": true,
+    "flatten_on_hard_stop": true,
+    "disable_on_dd_kill": true
+  }
+}

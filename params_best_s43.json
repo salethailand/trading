@@ -1,0 +1,4 @@
+Starting optimization (1 trials, n_jobs=1) | multi-objective=True
+Saved trials CSV -> runs/p39_capture_best_s43/trials_metrics.csv
+Saved Pareto plot -> runs/p39_capture_best_s43/pareto_return_vs_drawdown.png
+Top-K under DD cap: [0] (agg='median')

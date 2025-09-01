@@ -1,0 +1,103 @@
+{
+  "generated_utc": "20250901_184409",
+  "env": {
+    "python": "3.13.3",
+    "pandas": "2.3.1",
+    "numpy": "2.3.1",
+    "platform": "macOS-15.5-arm64-arm-64bit-Mach-O"
+  },
+  "args": {
+    "input": [
+      "runs/p39_*"
+    ],
+    "topk": 25,
+    "dd_weight": 20.0,
+    "strict": true,
+    "min_trades": 5,
+    "monthly_target": 0.1,
+    "min_months": 3,
+    "winner_file": "runs/winner_dir_equity_fixed.txt",
+    "no_write": false,
+    "why": false,
+    "monthly_mode": "equity",
+    "equity0": 100000.0,
+    "dump_winner_monthlies": true,
+    "report": true,
+    "report_out": "reports/equity_fixed100k"
+  },
+  "inputs": [
+    "runs/p39_*"
+  ],
+  "counts": {
+    "run_dirs_found": 151,
+    "rows_scored": 3,
+    "with_trade_logs": 3
+  },
+  "winner": "p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+  "scoreboard_top": [
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+      "ret%": 18391.413642739804,
+      "maxDD%": -9.06155541255587,
+      "trades": 6071,
+      "geo_monthly%": 12.634481098242839,
+      "months": 14,
+      "mdd_from_trades%": 1.6976240339581783,
+      "dd_used%": 9.06155541255587,
+      "score": 18210.182534488686
+    },
+    {
+      "dir": "p39_seed131_dd04_open_short_FINAL_fee4e-4_slip6e-4",
+      "ret%": 18117.44232795117,
+      "maxDD%": -18.720934894829032,
+      "trades": 2752,
+      "geo_monthly%": 10.468179013763715,
+      "months": 14,
+      "mdd_from_trades%": 2.8069602139425887,
+      "dd_used%": 18.720934894829032,
+      "score": 17743.023630054588
+    },
+    {
+      "dir": "p39_seed131_dd04_broadhours_strict_short_s11",
+      "ret%": 108.55984101387314,
+      "maxDD%": -16.85103462683189,
+      "trades": 676,
+      "geo_monthly%": 10.890416355137662,
+      "months": 11,
+      "mdd_from_trades%": 2.736923756447285,
+      "dd_used%": 16.85103462683189,
+      "score": -228.46085152276464
+    }
+  ],
+  "artifacts": {
+    "scoreboard_csv": "reports/equity_fixed100k/scoreboard.csv",
+    "winner_monthlies_csv": "reports/equity_fixed100k/winner_monthlies.csv",
+    "winner_file": "runs/winner_dir_equity_fixed.txt"
+  },
+  "winner_detail": {
+    "dir": "runs/p39_seed131_dd04_broadhours_strict_open_short_mc_dd06_fee2x_slip0",
+    "E0": 100000.0,
+    "E0_origin": "fixed",
+    "monthly_mode": "equity",
+    "months": 14,
+    "geo_monthly": 0.1263448109824284,
+    "cagr": 3.169234773737288,
+    "sharpe_ann": 1.6598902034120604,
+    "sortino_ann": NaN,
+    "maxdd_from_monthlies": 0.0,
+    "ulcer_index": 0.0,
+    "mdd_from_curve": 0.016976240339581783,
+    "files": {
+      "trials_metrics.csv": {
+        "exists": true,
+        "sha256": "12587722f92d23f55a507cb1785045c28894974b5d14ca9d7c87721f66f3f4a4",
+        "size": 879255
+      },
+      "test_trades.csv": {
+        "exists": true,
+        "sha256": "ca767bc048d0438b8d7e343bb179f412a738401002c75a4a100f602cd65557c4",
+        "size": 110696
+      }
+    }
+  }
+}

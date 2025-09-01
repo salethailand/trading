@@ -1,0 +1,223 @@
+#!/usr/bin/env python3
+import argparse, glob, sys, warnings
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+# Silence the "Period drops timezone" warning
+warnings.filterwarnings("ignore", message="Converting to PeriodArray/Index representation will drop timezone information.")
+
+try:
+    from tabulate import tabulate
+    HAVE_TABULATE = True
+except Exception:
+    HAVE_TABULATE = False
+
+def discover_run_dirs(inputs):
+    found, seen = [], set()
+    for pat in inputs:
+        for hit in glob.glob(pat, recursive=True):
+            p = Path(hit)
+            if p.is_file() and p.name == "trials_metrics.csv":
+                d = p.parent
+                if d not in seen:
+                    found.append(d); seen.add(d)
+            elif p.is_dir():
+                for csv in p.rglob("trials_metrics.csv"):
+                    d = csv.parent
+                    if d not in seen:
+                        found.append(d); seen.add(d)
+    return found
+
+def _read_metrics_csv(run_dir: Path):
+    f = run_dir / "trials_metrics.csv"
+    if not f.exists():
+        return None
+    try:
+        df = pd.read_csv(f)
+        df["__dir"] = str(run_dir)
+        return df
+    except Exception:
+        return None
+
+def _pick_cols(df):
+    ret = "ret_pct_true" if "ret_pct_true" in df.columns else ("ret_pct" if "ret_pct" in df.columns else None)
+    dd  = "max_dd_pct_true" if "max_dd_pct_true" in df.columns else ("max_dd_pct" if "max_dd_pct" in df.columns else None)
+    return ret, dd
+
+def _as_percent(x):
+    if pd.isna(x): return np.nan
+    x = float(x)
+    return x*100.0 if abs(x) <= 1.5 else x
+
+def _best_row(df: pd.DataFrame):
+    ret_col, dd_col = _pick_cols(df)
+    if ret_col is None: return None
+    idx = df[ret_col].astype(float).idxmax()
+    row = df.loc[idx].to_dict()
+    row["_ret"] = float(row[ret_col])
+    row["_dd"]  = float(row.get(dd_col, np.nan)) if dd_col in df.columns else np.nan
+    row["_trades"] = int(row.get("trades", 0)) if pd.notna(row.get("trades", np.nan)) else 0
+    row["_dir"] = row.get("__dir", "")
+    return row
+
+def _compute_monthlies_from_trades(run_dir: Path):
+    t = run_dir / "test_trades.csv"
+    if not t.exists(): return None
+    try:
+        trades = pd.read_csv(t)
+    except Exception:
+        return None
+
+    ts_col = next((c for c in ["exit_time","timestamp","entry_time","time","date","t"] if c in trades.columns), None)
+    if ts_col is None: return None
+    pnl_col = "realized_pnl" if "realized_pnl" in trades.columns else ("pnl" if "pnl" in trades.columns else None)
+    if pnl_col is None: return None
+
+    # Parse time as UTC and strip tz to avoid warnings
+    trades[ts_col] = pd.to_datetime(trades[ts_col], errors="coerce", utc=True).dt.tz_localize(None)
+    trades = trades.dropna(subset=[ts_col]).sort_values(ts_col).copy()
+    trades["pnl"] = pd.to_numeric(trades[pnl_col], errors="coerce").fillna(0.0)
+    total_pnl = trades["pnl"].sum()
+
+    # Infer starting equity E0 from metrics if possible
+    E0 = 100_000.0
+    mfile = run_dir / "trials_metrics.csv"
+    if mfile.exists():
+        mdf = pd.read_csv(mfile)
+        for cand in ["ret_pct_true", "ret_pct"]:
+            if cand in mdf.columns and mdf[cand].notna().any():
+                rp = float(mdf[cand].max())
+                rp = rp if abs(rp) > 1.5 else rp * 100.0
+                if abs(rp) > 1e-9:
+                    E0 = abs(total_pnl / (rp/100.0))
+                break
+
+    trades["cum_pnl"] = trades["pnl"].cumsum()
+    trades["equity"]  = E0 + trades["cum_pnl"]
+    trades["month"]   = trades[ts_col].dt.to_period("M")
+
+    months = []
+    eq_prev = E0
+    for m, g in trades.groupby("month"):
+        eq_start = float(eq_prev)
+        eq_end   = float(g["equity"].iloc[-1])
+        r = (eq_end/eq_start - 1.0) if eq_start > 0 else np.nan
+        months.append({"month": str(m), "ret": r})
+        eq_prev = eq_end
+    if not months: return None
+
+    mdf = pd.DataFrame(months)
+    good = (mdf["ret"] + 1).clip(lower=1e-12)
+    geo = float(np.prod(good) ** (1/len(good)) - 1.0)
+
+    # Max drawdown from equity path
+    peak = -np.inf; mdd = 0.0
+    for eq in trades["equity"]:
+        peak = max(peak, eq)
+        dd = (eq/peak) - 1.0
+        mdd = min(mdd, dd)
+    return {"months": len(mdf), "geo_monthly": geo, "mdd": abs(mdd)}
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--input", nargs="+", required=True)
+    ap.add_argument("--topk", type=int, default=10)
+    ap.add_argument("--dd-weight", type=float, default=10.0, help="Score = ret%% - dd_weight * |maxDD%%|")
+    ap.add_argument("--strict", action="store_true")
+    ap.add_argument("--min-trades", type=int, default=10)
+    ap.add_argument("--monthly-target", type=float, default=None, help="e.g. 0.10 for 10%%")
+    ap.add_argument("--min-months", type=int, default=2)
+    ap.add_argument("--winner-file", default="runs/winner_dir.txt")
+    ap.add_argument("--no-write", action="store_true")
+    ap.add_argument("--why", action="store_true", help="Print filter diagnostics")
+    args = ap.parse_args()
+
+    run_dirs = discover_run_dirs(args.input)
+    if not run_dirs:
+        print("No readable data found in inputs."); sys.exit(1)
+
+    rows = []
+    for rd in sorted(run_dirs):
+        mdf = _read_metrics_csv(rd)
+        if mdf is None or mdf.empty: continue
+        best = _best_row(mdf)
+        if not best: continue
+
+        ret_pct = _as_percent(best["_ret"])
+        dd_pct  = _as_percent(best["_dd"]) if pd.notna(best["_dd"]) else np.nan
+        trades  = best["_trades"]
+
+        monthly = _compute_monthlies_from_trades(rd)
+        if monthly:
+            geo_m = monthly["geo_monthly"] * 100.0
+            mdd_m = monthly["mdd"] * 100.0
+            months= monthly["months"]
+        else:
+            geo_m = np.nan; mdd_m = np.nan; months = 0
+
+        dd_for_score = dd_pct if pd.notna(dd_pct) else 0.0
+        rows.append({
+            "dir": rd.name,
+            "ret%": ret_pct,
+            "maxDD%": dd_pct,
+            "trades": trades,
+            "geo_monthly%": geo_m,
+            "months": months,
+            "mdd_from_trades%": mdd_m,
+            "score": ret_pct - args.dd_weight * abs(dd_for_score),
+        })
+
+    df = pd.DataFrame(rows)
+    if df.empty:
+        print("No readable data found in inputs."); sys.exit(1)
+
+    print(f"Found {len(run_dirs)} run dirs | scored rows: {len(df)} | with trade logs: {df['geo_monthly%'].notna().sum()}")
+
+    # STRICT FILTERS
+    if args.strict:
+        if args.why:
+            before = len(df)
+            m1 = df["trades"] >= args.min_trades
+            m2 = df["ret%"].between(-20000, 20000, inclusive="both")
+            m3 = df["maxDD%"].between(0, 1000, inclusive="both") | df["maxDD%"].isna()
+            print(f"[STRICT] start={before}  drop_trades<{args.min_trades}: {np.count_nonzero(~m1)}  drop_ret_bounds: {np.count_nonzero(~m2)}  drop_dd_bounds: {np.count_nonzero(~m3)}")
+        df = df[
+            (df["trades"] >= args.min_trades) &
+            (df["ret%"].between(-20000, 20000, inclusive="both")) &
+            (df["maxDD%"].between(0, 1000, inclusive="both") | df["maxDD%"].isna())
+        ]
+
+    # MONTHLY TARGET FILTER
+    if args.monthly_target is not None:
+        target_pct = args.monthly_target * 100.0
+        if args.why:
+            before = len(df)
+            m_has = df["geo_monthly%"].notna()
+            m_months = df["months"] >= args.min_months
+            m_target = df["geo_monthly%"] >= target_pct
+            print(f"[MONTHLY] start={before}  no_tradelog: {np.count_nonzero(~m_has)}  short_history<{args.min_months}m: {np.count_nonzero(m_has & ~m_months)}  below_target<{target_pct:.2f}%: {np.count_nonzero(m_has & m_months & ~m_target)}")
+        df = df[(df["geo_monthly%"].notna()) & (df["months"] >= args.min_months) & (df["geo_monthly%"] >= target_pct)]
+
+    if df.empty:
+        print("All rows filtered out. Try removing --strict or --monthly-target."); sys.exit(2)
+
+    df = df.sort_values("score", ascending=False)
+    show_cols = ["dir","ret%","maxDD%","trades","geo_monthly%","months","mdd_from_trades%","score"]
+
+    print("\nAll runs (sorted by score, desc)")
+    if HAVE_TABULATE:
+        print(tabulate(df[show_cols].head(args.topk), headers="keys", tablefmt="github", floatfmt=".4f"))
+    else:
+        print(df[show_cols].head(args.topk).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
+
+    winner = df.iloc[0]["dir"]
+    if not args.no_write:
+        Path(args.winner_file).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.winner_file).write_text(str(winner))
+        print(f"\nWinner written to {args.winner_file} -> {winner}")
+    else:
+        print(f"\nWinner (not written): {winner}")
+
+if __name__ == "__main__":
+    main()
