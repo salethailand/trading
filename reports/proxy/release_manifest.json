@@ -1,5 +1,5 @@
 {
-  "generated_utc": "20250901_184218",
+  "generated_utc": "20250901_191015",
   "env": {
     "python": "3.13.3",
     "pandas": "2.3.1",
@@ -21,7 +21,7 @@
     "why": false,
     "monthly_mode": "proxy",
     "equity0": null,
-    "dump_winner_monthlies": false,
+    "dump_winner_monthlies": true,
     "report": true,
     "report_out": "reports/proxy"
   },
