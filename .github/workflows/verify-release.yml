@@ -2,20 +2,31 @@ name: Verify Release Bundle
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to verify (e.g., release-20250902-p39)
+        required: true
+        type: string
 jobs:
   verify:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TAG: ${{ github.event.inputs.tag || github.event.release.tag_name }}
     steps:
-      - name: Install deps
-        run: sudo apt-get update && sudo apt-get install -y jq
-      - name: Download assets with gh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Ensure gh present
+        run: gh --version || (sudo apt-get update && sudo apt-get install -y gh)
+      - name: Download & verify
         run: |
-          tag="${{ github.event.release.tag_name }}"
-          mkdir -p work && cd work
-          gh release download "$tag"
-          sha256sum -c p39_release_checksums.txt
-          tar -tzf p39_release_*.tgz | egrep 'manifest_(equity_fixed100k|proxy)\.json|scoreboard_(equity_fixed100k|proxy)\.csv|risk_limits\.json|_test_trades\.csv|_trials_metrics\.csv' >/dev/null
+          set -euo pipefail
+          tag="${TAG}"
+          work=$(mktemp -d)
+          gh release download "$tag" -D "$work"
+          ( cd "$work" && sha256sum -c p39_release_checksums.txt )
+          for a in "$work"/p39_release_*.tgz; do
+            tar -tzf "$a" | egrep 'manifest_(equity_fixed100k|proxy)\.json|scoreboard_(equity_fixed100k|proxy)\.csv|risk_limits\.json|_test_trades\.csv|_trials_metrics\.csv' >/dev/null
+          done
+          echo "OK"
